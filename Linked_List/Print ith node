@@ -1,0 +1,15 @@
+class Node :
+    def __init__(self, data) :
+        self.data = data
+        self.next = None
+
+
+def printIthNode(head,i):
+    cnt = 0
+    tmp = head
+    while tmp :
+        if cnt == i:
+            print(tmp.data)
+            return 
+        cnt +=1
+        tmp = tmp.next
