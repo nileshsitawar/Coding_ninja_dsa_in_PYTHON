@@ -1,0 +1,31 @@
+
+#has created linked_List which has data and the refernce to the next node
+class Node():
+    def __init__(self,data):
+        self.data = data 
+        self.next =None
+        #below fxn to take input from the user
+def inp():
+    lis = [int(i) for i in input().split()]
+    head = None
+    for i in lis:
+        if i == -1:
+            break
+        newnode = Node(i)
+        if head is None:
+            head = newnode
+        else:
+            curr = head
+            while curr.next:
+                curr = curr.next
+            curr.next= newnode
+               
+    return head
+#below fxn to print the linked list    
+def pL(head):
+    cr =head
+    while cr is not None:
+        print(str(cr.data),"__>",end = "")
+        cr = cr.next
+head = inp() 
+print(pL(head))
