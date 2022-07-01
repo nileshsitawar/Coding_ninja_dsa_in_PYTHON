@@ -1,1 +1,21 @@
 
+class Node():
+    def __init__(self,data):
+        self.data = data 
+        self.next =None
+def inp():
+    lis = [int(i) for i in input().split()]
+    head = None
+    for i in lis:
+        if i == -1:
+            break
+        newnode = Node(i)
+        if head is None:
+            head = newnode
+        else:
+            curr = head
+            while curr.next:
+                curr = curr.next
+            curr.next= newnode
+               
+    return head
