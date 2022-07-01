@@ -1,3 +1,6 @@
+
+from sys import stdin
+#Following is the Node class already written for the Linked List
 class Node :
     def __init__(self, data) :
         self.data = data
@@ -13,3 +16,96 @@ def printIthNode(head,i):
             return 
         cnt +=1
         tmp = tmp.next
+        
+# def printIthNode(head,i):
+#     count = 0 
+#     tmp = head
+#     while tmp:
+#         if count == i :
+#             print(tmp.data)
+#             return
+#         count +=1
+#         tmp = tmp.next
+
+# def printIthNode(head, i):
+#     count=0
+#     temp = head
+
+#     while temp and count<i:   #while temp means upto temp where temp is not then it will stop
+#         count+=1     
+#         temp=temp.next
+#     if temp is not None:  #this coodition for the testcase when LL is -1 itself and pos is 0 then our output should
+#         #be empty if we not write then it will return error that nonetype has no attribute
+#         print(temp.data)
+
+#1
+#18 21 9 4 10 15 -1
+#3
+#c=0,1,2,3 <i(3)
+#temp= ->18,->21,->9,    temp.data->4
+#c=3   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#Taking Input Using Fast I/O
+def takeInput() :
+    head = None
+    tail = None
+
+    datas = list(map(int, stdin.readline().rstrip().split(" ")))
+
+    i = 0
+    while (i < len(datas)) and (datas[i] != -1) :
+        data = datas[i]
+        newNode = Node(data)
+
+        if head is None :
+            head = newNode
+            tail = newNode
+
+        else :
+            tail.next = newNode
+            tail = newNode
+
+        i += 1
+
+    return head
+
+
+#to print the linked list 
+def printLinkedList(head) :
+
+    while head is not None :
+        print(head.data, end = " ")
+        head = head.next
+
+    print()
+
+
+#main
+t = int(stdin.readline().rstrip())
+
+while t > 0 :
+
+    head = takeInput()
+    i = int(stdin.readline().rstrip())
+    printIthNode(head, i)
+
+    t -= 1
