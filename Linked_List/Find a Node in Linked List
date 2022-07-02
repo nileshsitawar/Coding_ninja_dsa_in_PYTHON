@@ -1,0 +1,36 @@
+class Node :
+    def __init__(self, data) :
+        self.data = data
+        self.next = None
+
+# def findNode(head, n,pos=0) :
+#     if head is None :
+#         return -1
+
+#     if head.data == n:
+#         return pos
+#     return findNode(head.next,n,pos+1)
+   
+    
+    #using loop
+def findNode(head,n):
+    count =0
+    tmp = head
+    while tmp:
+        if tmp.data == n:
+            return count
+        count +=1
+        tmp = tmp.next
+    else:
+        return -1
+    
+# class Node:
+#     def __init__(self,data):
+#         self.data = data
+#         self.next = None
+# def findNode(head,n,pos = 0):
+#     if head is None:
+#         return -1
+#     if head.data == n:
+#         return pos
+#     return findNode(head.next,n,pos+1)
