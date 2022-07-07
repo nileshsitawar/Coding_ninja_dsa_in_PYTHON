@@ -1,0 +1,67 @@
+
+from sys import stdin
+def countBracketReversals(str):
+    if len(str)%2 !=0:
+        return -1
+    s = []
+    for i in range(len(str)):
+        if str[i] == "{" :          #open bracket direct append to stack
+            s.append(str[i])
+        elif str[i] == "}" :
+            if len(s) == 0:      #if 1st char is closed bracket then append it into  to stack
+                s.append(str[i])
+            elif s and s[-1] == "{" : #  if the char is  closed bracket if the some elements are into the
+                                                #  stack and s[-1] is open bracket then pop()
+                s.pop()
+            elif s and s[-1] == "}" :  # eth paryant alsa means we have only open brac upto this so no option append it into the stack
+                s.append(str[i])
+        
+    t = 0
+    while s:
+        c1 = s.pop()
+        c2 = s.pop()
+        c = 0 
+        if c1 == c2:
+            c = 1
+            t +=c
+        else:
+            c=2
+            t+=c
+    return t
+
+    
+    
+    
+
+
+# def countBracketReversals(str) :
+#     if len(str) % 2 != 0:
+#         return -1
+#     s = []
+#     for i in range(len(str)):
+#         if str[i] == "{":
+#             s.append(str[i])
+#         elif str[i] == "}" :
+#             if len(s) == 0:
+#                 s.append(str[i])
+#             elif s and s[-1] == "{":
+#                 s.pop()
+#             elif s and s[-1]  == "}" :
+#                 s.append(str[i])
+#     t=0
+#     while s:
+#         c1 = s.pop()
+#         c2 = s.pop()
+#         c=0
+#         if c1 == c2:
+#             c =1
+#             t+=c
+#         else:
+#             c =2
+#             t+=c
+#     return t
+
+
+
+
+print(countBracketReversals(stdin.readline().strip()))
