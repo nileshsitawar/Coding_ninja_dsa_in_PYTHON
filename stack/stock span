@@ -1,0 +1,50 @@
+def stockSpan(price,n):
+    s = []
+    ans = []
+    for i in range(n):
+        if len(s) == 0:
+            ans.append(-1)
+            #if stack top is greater then simply append it to our and
+        elif s and price[i]<s[-1][0] :
+            ans.append(s[-1][1])
+        #  if price[i] is greater than the top ele of stack then simply pop untill stack ele
+        #stack top > price or if stack becomes empty then simply append -1 otherwise simply add the index of  than ele into the ans  
+        elif s and price[i]>=s[-1][0]:
+            while s and price[i]>s[-1][0]:  #here only > not >=
+                s.pop()
+            if len(s) == 0:
+                ans.append(-1)
+            else:
+                ans.append(s[-1][1])
+                
+        s.append([price[i],i])# s.append(s[-1][1]) <-- this is wrong because append takes only one argument  so we have to add add a 
+                # tuple like([s[-1][1],i]) 
+    for i in range(n):
+        ans[i] = i-ans[i]
+    return ans
+  
+    
+    # ans = []
+    # for i in range(n):
+    #     if not s:
+    #         ans.append(-1)
+    #     elif s and s[-1][0] > price[i]:
+    #         ans.append(s[-1][1])
+    #     elif s and s[-1][0] <= price[i]:
+    #          while (s and s[-1][0] < price[i]):
+    #                 s.pop()
+    #          if len(s) == 0:
+    #             ans.append(-1)
+    #          else:
+    #             ans.append(s[-1][1])
+    #     s.append([price[i],i]) #i have appended list here instead of a tuple 
+    # for i in range(len(ans)):  #for thr values of price and for the perticular index
+    #     ans[i] = i - ans[i]
+    # return ans
+n=int(input())
+p = [int(ele) for ele in input().split()]
+if len(p)>0:
+    price=p
+    spans = stockSpan(price,n)
+    for ele in spans:
+        print(ele,end= ' ') 
