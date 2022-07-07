@@ -1,0 +1,21 @@
+def nextLargerElement(arr,n):
+    arr.reverse
+    s =[]
+    lis =[]
+    for i in range(n-1,-1,-1):
+        if len(s)==0:
+            lis.append(-1)
+        elif (len(s)>0 and  s[-1]>arr[i]):
+            lis.append(s[-1])
+        elif len(s)>0 and s[-1]<arr[i]:
+            while len(s)>0 and s[-1]<arr[i]:
+                s.pop()
+            if len(s)==0:
+                lis.append(-1)
+            else:
+                lis.append(s[-1])
+        s.append(arr[i])
+    lis.reverse()
+    return lis
+arr = [1,3,2,4]
+print(nextLargerElement(arr,4))
