@@ -1,0 +1,19 @@
+from sys import stdin 
+def checkRedundantBrackets(expression) :
+    s =[]
+    for i in range(len(expression)):
+        if expression[i] in "+-/*(":
+            s.append(expression[i])
+        elif expression[i] ==")" :
+            if s and s[-1] == "(":
+                return "true"
+            while s and s[-1] != "(":
+                s.pop()
+            if s:
+                s.pop()
+            else:
+                return "false"
+    return "false"
+              
+
+            
