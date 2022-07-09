@@ -1,0 +1,15 @@
+class BST:
+    def __init__(self,data):
+        self.data = data 
+        self.left = None
+        self.right = None
+
+b1 = BST(1)
+b2= BST(2)
+b3 = BST(3)
+b1.left  = b2
+b1.right = b3
+print(b1.data)
+print(b1.left.data)
+print(b1.right.data)
+print(b2.right)
