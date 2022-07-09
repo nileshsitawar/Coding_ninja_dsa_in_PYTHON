@@ -4,12 +4,7 @@ class BinaryTreeNode:
         self.left=None
         self.right=None
 
-def printTree(root):
-    if root==None:
-        return
-    print(root.data)
-    printTree(root.left)
-    printTree(root.right)
+
 
 def printTreeDetailed(root):
     if root==None:
