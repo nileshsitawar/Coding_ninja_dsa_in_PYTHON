@@ -1,3 +1,30 @@
+
+def fib(n,dp):
+    if n == 0 or n ==1 :
+        return n
+        # store the value if it is -1 before then store it at dp[n-1]th index ,,
+    if dp[n-1] == -1:
+        ans1 = fib(n-1,dp)
+        dp[n-1] = ans1
+    else:
+        #otherwise direct take value from the stores index of dp[n-1]
+        ans1 = dp[n-1]
+    if dp[n-2] == -1:
+        ans2 = fib(n-2,dp)
+        dp[n-2] = ans2
+    else:
+        ans2 = dp[n-2]
+    res =  ans1+ans2
+    return res
+n = int(input())
+dp =[-1 for i in range(n+1)]
+
+ans = fib(n,dp)
+print(ans)
+
+
+
+
 def fibb(n,dp):
     
     if n==0 or n==1:
