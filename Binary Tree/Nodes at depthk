@@ -1,0 +1,61 @@
+def nodeatDepthk(root,d,k) :
+    if root == None:
+        return 
+    if d==k:
+        print(root.data)
+    nodeatDepthk(root.left,d+1,k)
+    nodeatDepthk(root.right,d+1,k)
+    return root
+    
+#Taking level-order input using fast I/O method
+def takeInput():
+    levelOrder = list(map(int, stdin.readline().strip().split(" ")))
+    start = 0
+    
+    length = len(levelOrder)
+
+    if length == 1 :
+        return None
+    
+    root = BinaryTreeNode(levelOrder[start])
+    start += 1
+
+    q = queue.Queue()
+    q.put(root)
+
+    while not q.empty():
+        currentNode = q.get()
+
+        leftChild = levelOrder[start]
+        start += 1
+
+        if leftChild != -1:
+            leftNode = BinaryTreeNode(leftChild)
+            currentNode.left =leftNode
+            q.put(leftNode)
+
+        rightChild = levelOrder[start]
+        start += 1
+
+        if rightChild != -1:
+            rightNode = BinaryTreeNode(rightChild)
+            currentNode.right =rightNode
+            q.put(rightNode)
+
+    return root
+
+
+# def inOrder(root) :
+# 	if root is None :
+# 		return 
+
+# 	inOrder(root.left)
+# 	print(root.data, end = " ")
+# 	inOrder(root.right)
+	
+
+# Main
+root = takeInput()
+
+nodeatDepthk(root,d=0,k=1)
+# inOrder(root)
