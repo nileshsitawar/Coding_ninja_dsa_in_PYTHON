@@ -1,0 +1,114 @@
+def minTree(root):#Returns minimum value in a subtree
+if (root == None):#If root is None, it implies empty tree
+return 100000 #Return a large number in this case
+leftMin = minTree(root.left) #Find min in left subtree
+rightMin = minTree(root.right) #Find min in right subtree
+return min(leftMin, rightMin, root.data) #Return overall min
+def maxTree(root):#Returns minimum value in a subtree
+if (root == None): #If root is None, it implies empty tree
+return -100000 #Return a very small number in this case
+leftMax = maxTree(root.left) #Find max in left subtree
+rightMax = maxTree(root.right) #Find max in right subtree
+return max(leftMax, rightMax, root.data) #Return overall max
+def isBST(root)
+if (root== None):#If root is None, it implies empty tree
+return True #Empty tree is a BST
+leftMax = maxTree(root.left) #Max in left subtree
+rightMin = minTree(root.right) #Min in right subtree
+if root.data > rightMin or root.data <= leftMax:
+return False #Checking BST Property
+isLeftBST = isBST(root.left)#Recursive call on left subtree
+isRightBST = isBST(root.right)#Recursive call on right subtree
+return isLeftBST and isRightBST #Both must be BST
+
+
+
+
+
+
+
+
+
+
+
+
+def minTree(root):#Returns minimum value in a subtree
+if (root == None):#If root is None, it implies empty tree
+return 100000 #Return a large number in this case
+leftMin = minTree(root.left) #Find min in left subtree
+rightMin = minTree(root.right) #Find min in right subtree
+return min(leftMin, rightMin, root.data) #Return overall min
+
+
+def maxTree(root):#Returns minimum value in a subtree
+if (root == None): #If root is None, it implies empty tree
+return -100000 #Return a very small number in this case
+leftMax = maxTree(root.left) #Find max in left subtree
+rightMax = maxTree(root.right) #Find max in right subtree
+return max(leftMax, rightMax, root.data) #Return overall max
+
+
+
+def isBST(root)
+if (root== None):#If root is None, it implies empty tree
+return True #Empty tree is a BST
+leftMax = maxTree(root.left) #Max in left subtree
+rightMin = minTree(root.right) #Min in right subtree
+if root.data > rightMin or root.data <= leftMax:
+return False #Checking BST Property
+isLeftBST = isBST(root.left)#Recursive call on left subtree
+isRightBST = isBST(root.right)#Recursive call on right subtree
+return isLeftBST and isRightBST #Both must be BST
+Time Complexity: In the isBST() function, we are traversing each node, and for
+each node, we are then calculating the minimum and maximum value by again
+traversing that complete subtree’s height. Hence, if there are N nodes in total and
+the height of the tree is H, then the time complexity will be O(N*H).
+Improved Solution for Check BST
+
+● To improve our solution, observe that for each node, the minimum and
+maximum values are being calculated separately.
+9
+● We now wish to calculate these values, while checking the isBST condition
+itself, to get rid of another cycle of iterations.
+● We will follow a similar approach as that of the diameter calculation of binary
+trees.
+● At each stage, we will return the maximum value, minimum value, and the
+BST status (True/False) for each node of the tree, in the form of a tuple.
+Let’s look at its implementation now:
+
+def isBST2(root):
+if root == None:
+return 100000, -100000, True
+leftMin, leftMax, isLeftBST= isBST2(root.left)
+rightMin, rightMax, isRightBST = isBST2(root.right)
+minimum= min(leftMin rightMin, root.data) #Minimum value
+maximum = max(leftMax, rightMax, root.data) #Maximum value
+isTreeBST=True
+
+
+#Checking the BST Property
+if root.data <= leftMax or root.data > rightMin:
+isTreeBST = False
+if not(isLeftBST) or not(isRightBST):
+isTreeBST = False
+return minimum, maximum, isTreeBST
+Time Complexity: Here, we are going to each node and doing a constant amount
+of work. Hence, the time complexity for N nodes will be of O(N).
+Another Improved Solution for Check BST
+The time complexity for this problem can’t be improved further, but there is a
+better approach to this problem, which makes our code look more robust. Let’s
+discuss that approach now.
+10
+Approach: We will be checking on the left subtree, right subtree, and combined
+tree without returning a tuple of maximum and minimum values. We will be using
+the concept of default arguments over here. Check the code below:
+def isBST3(root, min_range, max_range):
+if root==None:#Empty tree is a BST
+return True
+if root.data < min_range or root.data > max_range:
+return False #Check the BST Property
+isLeftWithinConstraints = isBST3(root.left, min_range, root.data - 1)
+isRightwithinConstraints = isBST3(root.right, root.data, max_range)
+return isLeftWithinConstraints and isRightWithinConstraints
+Time Complexity: Here also, we are just traversing each node and doing constant
+work on each of them; hence time complexity remains the same, i.e. O(n).
